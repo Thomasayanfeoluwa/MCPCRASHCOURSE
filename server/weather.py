@@ -54,3 +54,16 @@ async def get_alerts(state: str) -> str:
     alerts = [format_alert(feature) for feature in data["features"]]
     return "\n---n".join(alerts)
 
+
+@mcp.resource("echo://{message}")
+def echo_resource(message: str) -> str:
+    """Read a message by message."""
+    # This would normally read from disk
+    return f"Resource echo: {message}"
+
+
+@mcp.resource("config://app")
+def get_config() -> str:
+    """Static configuration data."""
+    return "App configuration here"
+
